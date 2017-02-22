@@ -16,30 +16,34 @@ r <- problem1()
 
 
 
-
 #sprememba koeficienta b1 = 8
 
 rb1 <- seq(4.5, 10.5, 0.01) #koeficient b1 spreminjamo na intervalu [4.5, 10.5] s korakom 0.05
 sb1 <- sapply(rb1, function(x) problem1(b1 = x)) #zaženemo funkcijo problem1, kjer se nam koeficient b1 spreminja
 
-db1 = data.frame(rb1, sb1["x1",], sb1["x2",], sb1["value.b",])
+db11 = rbind(data.frame(b1 = rb1, var = "x1", val = sb1["x1",]),
+            data.frame(b1 = rb1, var = "x2", val = sb1["x2",])) #definirana tabela, da se na grafu lahko loci rešitve
+db12 = data.frame(rb1, sb1["value.b",]) #tabela za graf optimalne vrednosti
 
-#Graf za rešitvi x1 in x2 
+#Graf za rešitvi x in y
 grafb1xy <- ggplot() + 
-  geom_point(data = db1, aes(x = rb1, y = sb1["x1",]), colour = "steelblue3")+
-  geom_point(data = db1, aes(x = rb1, y = sb1["x2",]), colour = "deeppink1")+
+  geom_point(data = db11, aes(x = b1, y = val, colour = var))+
   ggtitle("Vpliv koeficienta b1 na rešitvi x in y")+
-  xlab("Koeficient b1") + ylab("Nova rešitev")
+  xlab("Koeficient b1") + ylab("Nova rešitev") +
+  scale_colour_discrete(name  = "Rešitvi",
+                       breaks = c("x1", "x2"),
+                       labels = c("x", "y"))
+
 
 #Graf za optimalno vrednost
 grafb1opt <- ggplot() + 
-  geom_point(data = db1, aes(x = rb1, y = sb1["value.b",]), colour = "mediumpurple1")+
+  geom_point(data = db12, aes(x = rb1, y = sb1["value.b",]), colour = "mediumpurple1")+
   ggtitle("Vpliv koeficienta b1 na optimalno vrednost")+
   xlab("Koeficient b1") + ylab("Optimalna vrednost")
 
-ggsave(filename="grafb1xy.pdf", plot=grafb1xy)
+ggsave(filename = "grafb1xy.pdf", plot = grafb1xy)
 
-ggsave(filename="grafb1opt.pdf", plot=grafb1opt)
+ggsave(filename = "grafb1opt.pdf", plot = grafb1opt)
 
 
 #sprememba koeficienta b2 = 10
@@ -47,18 +51,22 @@ ggsave(filename="grafb1opt.pdf", plot=grafb1opt)
 rb2 <- seq(7, 15, 0.01) 
 sb2 <- sapply(rb2, function(x) problem1(b2 = x))
 
-db2 = data.frame(rb2, sb2["x1",], sb2["x2",], sb2["value.b",])
+db21 = rbind(data.frame(b2 = rb2, var = "x1", val = sb2["x1",]),
+            data.frame(b2 = rb2, var = "x2", val = sb2["x2",]))
+db22 = data.frame(rb2, sb2["value.b",])
 
-#Graf za rešitvi x1 in x2 
+#Graf za rešitvi x in y
 grafb2xy <- ggplot() + 
-  geom_point(data = db2, aes(x = rb2, y = sb2["x1",]), colour = "steelblue3")+
-  geom_point(data = db2, aes(x = rb2, y = sb2["x2",]), colour = "deeppink1")+
+  geom_point(data = db21, aes(x = b2, y = val, colour = var))+
   ggtitle("Vpliv koeficienta b2 na rešitvi x in y")+
-  xlab("Koeficient b2") + ylab("Nova rešitev")
+  xlab("Koeficient b2") + ylab("Nova rešitev") +
+  scale_colour_discrete(name  = "Rešitvi",
+                        breaks = c("x1", "x2"),
+                        labels = c("x", "y"))
 
 #Graf za optimalno vrednost
 grafb2opt <- ggplot() + 
-  geom_point(data = db2, aes(x = rb2, y = sb2["value.b",]), colour = "mediumpurple1")+
+  geom_point(data = db22, aes(x = rb2, y = sb2["value.b",]), colour = "mediumpurple1")+
   ggtitle("Vpliv koeficienta b2 na optimalno vrednost")+
   xlab("Koeficient b2") + ylab("Optimalna vrednost")
 
@@ -75,18 +83,23 @@ ggsave(filename="grafb2opt.pdf", plot=grafb2opt)
 rc1 <- seq(2500, 6500, 10) 
 sc1 <- sapply(rc1, function(x) problem1(c1 = x))
 
-dc1 = data.frame(rc1, sc1["x1",], sc1["x2",], sc1["value.b",])
+
+dc11 = rbind(data.frame(c1 = rc1, var = "x1", val = sc1["x1",]),
+             data.frame(c1 = rc1, var = "x2", val = sc1["x2",]))
+dc12 = data.frame(rc1, sc1["value.b",])
 
 #Graf za rešitvi x in y 
 grafc1xy <- ggplot() + 
-  geom_point(data = dc1, aes(x = rc1, y = sc1["x1",]), colour = "steelblue3")+
-  geom_point(data = dc1, aes(x = rc1, y = sc1["x2",]), colour = "deeppink1")+
+  geom_point(data = dc11, aes(x = c1, y = val, colour = var))+
   ggtitle("Vpliv koeficienta c1 na rešitvi x in y")+
-  xlab("Koeficient c1") + ylab("Nova rešitev")
+  xlab("Koeficient c1") + ylab("Nova rešitev") +
+  scale_colour_discrete(name  = "Rešitvi",
+                        breaks = c("x1", "x2"),
+                        labels = c("x", "y"))
 
 #Graf za optimalno vrednost
 grafc1opt <- ggplot() + 
-  geom_point(data = dc1, aes(x = rc1, y = sc1["value.b",]), colour = "mediumpurple1")+
+  geom_point(data = dc12, aes(x = rc1, y = sc1["value.b",]), colour = "mediumpurple1")+
   ggtitle("Vpliv koeficienta c1 na optimalno vrednost")+
   xlab("Koeficient c1") + ylab("Optimalna vrednost")
 
@@ -101,18 +114,22 @@ ggsave(filename="grafc1opt.pdf", plot=grafc1opt)
 rc2 <- seq(2000, 6500, 10) 
 sc2 <- sapply(rc2, function(x) problem1(c2 = x))
 
-dc2 = data.frame(rc2, sc2["x1",], sc2["x2",], sc2["value.b",])
+dc21 = rbind(data.frame(c2 = rc2, var = "x1", val = sc2["x1",]),
+             data.frame(c2 = rc2, var = "x2", val = sc2["x2",]))
+dc22 = data.frame(rc2, sc2["value.b",])
 
 #Graf za rešitvi x in y
 grafc2xy <- ggplot() + 
-  geom_point(data = dc2, aes(x = rc2, y = sc2["x1",]), colour = "steelblue3")+
-  geom_point(data = dc2, aes(x = rc2, y = sc2["x2",]), colour = "deeppink1")+
+  geom_point(data = dc21, aes(x = c2, y = val, colour = var))+
   ggtitle("Vpliv koeficienta c2 na rešitvi x in y")+
-  xlab("Koeficient c2") + ylab("Nova rešitev")
+  xlab("Koeficient c2") + ylab("Nova rešitev") +
+  scale_colour_discrete(name  = "Rešitvi",
+                        breaks = c("x1", "x2"),
+                        labels = c("x", "y"))
 
 #Graf za optimalno vrednost
 grafc2opt <- ggplot() + 
-  geom_point(data = dc2, aes(x = rc2, y = sc2["value.b",]), colour = "mediumpurple1")+
+  geom_point(data = dc22, aes(x = rc2, y = sc2["value.b",]), colour = "mediumpurple1")+
   ggtitle("Vpliv koeficienta c2 na optimalno vrednost")+
   xlab("Koeficient c2") + ylab("Optimalna vrednost")
 

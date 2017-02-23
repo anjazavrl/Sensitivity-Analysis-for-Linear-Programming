@@ -18,8 +18,8 @@ r <- problem1()
 
 #sprememba koeficienta b1 = 8
 
-rb1 <- seq(4.5, 10.5, 0.01) #koeficient b1 spreminjamo na intervalu [4.5, 10.5] s korakom 0.05
-sb1 <- sapply(rb1, function(x) problem1(b1 = x)) #zacenemo funkcijo problem1, kjer se nam koeficient b1 spreminja
+rb1 <- seq(0, 10.5, 0.01) #koeficient b1 spreminjamo na intervalu [0, 10.5] s korakom 0.01
+sb1 <- sapply(rb1, function(x) problem1(b1 = x)) #zazenemo funkcijo problem1, kjer se nam koeficient b1 spreminja
 
 db11 = rbind(data.frame(b1 = rb1, var = "x1", val = sb1["x1",]),
             data.frame(b1 = rb1, var = "x2", val = sb1["x2",])) #definirana tabela, da se na grafu lahko loci resitve
@@ -48,7 +48,7 @@ ggsave(filename = "grafb1opt.pdf", plot = grafb1opt)
 
 #sprememba koeficienta b2 = 10
 
-rb2 <- seq(7, 15, 0.01) 
+rb2 <- seq(0, 20, 0.01) 
 sb2 <- sapply(rb2, function(x) problem1(b2 = x))
 
 db21 = rbind(data.frame(b2 = rb2, var = "x1", val = sb2["x1",]),

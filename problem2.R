@@ -33,7 +33,7 @@ db12 = data.frame(rb1, sb1["value.b",]) #tabela za graf optimalne vrednosti
 #Grafi za resitve x,y,z in w
 grafb1xyzw <- ggplot() + 
   geom_point(data = db11, aes(x = b1, y = val, colour = var))+
-  ggtitle("Vpliv koeficienta b1 na rešitvi x, y, z in w")+
+  ggtitle("Vpliv koeficienta b1 na rešitve x, y, z in w")+
   xlab("Koeficient b1") + ylab("Nova rešitev") +
   scale_colour_discrete(name  = "Rešitvi",
                         breaks = c("x1", "x2", "x3", "x4"),
@@ -45,7 +45,7 @@ ggsave(filename="grafb1xyzw.pdf", plot=grafb1xyzw)
 grafb1opti <- ggplot() + 
   geom_point(data = db12, aes(x = rb1, y = sb1["value.b",]), colour = "mediumpurple1")+
   ggtitle("Vpliv koeficienta b1 na optimalno vrednost")+
-  xlab("Koeficient b2") + ylab("Optimalna vrednost")
+  xlab("Koeficient b1") + ylab("Optimalna vrednost")
 
 ggsave(filename="grafb1opti.pdf", plot=grafb1opti)
 
@@ -63,7 +63,7 @@ db22 = data.frame(rb2, sb2["value.b",])
 #Grafi za resitve x,y,z in w
 grafb2xyzw <- ggplot() + 
   geom_point(data = db21, aes(x = b2, y = val, colour = var))+
-  ggtitle("Vpliv koeficienta b2 na rešitev x, y, z in w")+
+  ggtitle("Vpliv koeficienta b2 na rešitve x, y, z in w")+
   xlab("Koeficient b2") + ylab("Nova rešitev") +
   scale_colour_discrete(name  = "Rešitvi",
                         breaks = c("x1", "x2", "x3", "x4"),
@@ -94,7 +94,7 @@ db32 = data.frame(rb3, sb3["value.b",])
 
 grafb3xyzw <- ggplot() + 
   geom_point(data = db31, aes(x = b3, y = val, colour = var))+
-  ggtitle("Vpliv koeficienta b3 na rešitev x, y, z in w")+
+  ggtitle("Vpliv koeficienta b3 na rešitve x, y, z in w")+
   xlab("Koeficient b3") + ylab("Nova rešitev") +
   scale_colour_discrete(name  = "Rešitvi",
                         breaks = c("x1", "x2", "x3", "x4"),
@@ -124,7 +124,7 @@ dc12 = data.frame(rc1, sc1["value.b",])
 #Graf za resitve x,y,z in w
 grafc1xyzw <- ggplot() + 
   geom_point(data = dc11, aes(x = c1, y = val, colour = var))+
-  ggtitle("Vpliv koeficienta c1 na rešitev x, y, z in w")+
+  ggtitle("Vpliv koeficienta c1 na rešitve x, y, z in w")+
   xlab("Koeficient c1") + ylab("Nova rešitev") +
   scale_colour_discrete(name  = "Rešitvi",
                         breaks = c("x1", "x2", "x3", "x4"),
@@ -154,7 +154,7 @@ dc22 = data.frame(rc2, sc2["value.b",])
 #Graf za resitve x,y,z in w
 grafc2xyzw <- ggplot() + 
   geom_point(data = dc21, aes(x = c2, y = val, colour = var))+
-  ggtitle("Vpliv koeficienta c2 na rešitev x, y, z in w")+
+  ggtitle("Vpliv koeficienta c2 na rešitve x, y, z in w")+
   xlab("Koeficient c2") + ylab("Nova rešitev") +
   scale_colour_discrete(name  = "Rešitvi",
                         breaks = c("x1", "x2", "x3", "x4"),
@@ -215,7 +215,7 @@ dc42 = data.frame(rc4, sc4["value.b",])
 #Graf za resitve x,y,z in w
 grafc4xyzw <- ggplot() + 
   geom_point(data = dc41, aes(x = c4, y = val, colour = var))+
-  ggtitle("Vpliv koeficienta c4 na rešitev x, y, z in w")+
+  ggtitle("Vpliv koeficienta c4 na rešitve x, y, z in w")+
   xlab("Koeficient c4") + ylab("Nova rešitev") +
   scale_colour_discrete(name  = "Rešitvi",
                         breaks = c("x1", "x2", "x3", "x4"),

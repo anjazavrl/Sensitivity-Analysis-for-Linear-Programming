@@ -1,6 +1,4 @@
 library(boot)
-library(lpSolve)
-library(lpSolveAPI)
 library(ggplot2)
 
 #1. primer
